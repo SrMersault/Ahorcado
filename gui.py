@@ -151,6 +151,7 @@ class aplicacion:
         elif intentos == 0:
             self.salida.set('Intentos acabados reiniciando')
             self.puntos.set(0)
+            self.n1.set('HAS PERDIDO')
             self.reiniciar()
 
     def ganador(self): #comprueba si has ganado
