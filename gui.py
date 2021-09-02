@@ -3,7 +3,7 @@ import random
 from tkinter.constants import DISABLED 
 import time
 intentos = 7
-palabras = ['hola', 'adios', 'perejil', 'hamaca', 'patata', 'uva', 'salchicha', 'lluvia', 'sillon', 'queso', 'maracas', 'chorizo', 'vestido', 'telefono', 'gorrion', 'estupidez', 'sufrimiento', 'requeson', 'zambomba']
+palabras = ['hola', 'adios', 'perejil', 'hamaca', 'patata', 'uva', 'salchicha', 'lluvia', 'sillon', 'queso', 'maracas', 'chorizo', 'vestido', 'telefono', 'gorrion', 'estupidez', 'sufrimiento', 'requeson', 'zambomba', 'escalofrio', 'chocolate','perejl', 'manoletina']
 letrasvalidas = ('a', 'b', 'c','d','e','f','g','h','i','j','k','l','m','n','ñ','o','p','q','r','s','t','u','v','w','x','y','z')
 word = palabras[random.randint(0,len(palabras) - 1)]
 letrasusadas = []
@@ -12,6 +12,7 @@ class aplicacion:
 
     def __init__(self):
         global intentos
+        self.puntostotales = 0
         self.indice = []
         for i in range(len(word)): #creamos una lista con la longitud de la palabra
             self.indice.append('-')
@@ -122,8 +123,9 @@ class aplicacion:
         global intentos
         if self.n1.get() == word:
             self.n1.set('')
+            self.puntostotales = self.puntostotales + 100 + 10 * intentos
             self.n1.set('HAS GANADO')
-            self.puntos.set(100 + intentos * 10) 
+            self.puntos.set(self.puntostotales) 
             self.reiniciar()
         else:
             self.salida.set('PALABRA FALLADA')
@@ -156,9 +158,9 @@ class aplicacion:
 
     def ganador(self): #comprueba si has ganado
         if word == ''.join(self.indice):
-            self.n1.set('HAS GANADO') 
-            self.puntos.set(100 + intentos * 10) 
-            self.reiniciar()
+            self.puntostotales = self.puntostotales + 100 + 10 * intentos
+            self.n1.set('HAS GANADO')
+            self.puntos.set(self.puntostotales) 
         else:
             pass 
 
